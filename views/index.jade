@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1 Enter a single Github username below and click the button to display profile info via JSON.
+  form(name="username", action='/', method="post")
+    input(type="text", name="user_name")
+    input(type="submit", value="Pull User Data")
+
+  if user
+     h1 #{user} @ 
+        a(href="#{email}") #{login} 
+     img(src='#{grav_img}') 
+     h4 Followers: #{followers} - Following: #{following}
+     h4 Repos: #{public_repos}
+
+     h3 Repos List:
+     for repo in repos
+         form(action="#{repo[1]}", method="get")
+            input(type="submit", value="#{repo[0]}")
